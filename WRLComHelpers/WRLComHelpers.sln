@@ -5,7 +5,6 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{551E5D9B-34BB-4075-A56A-71D36FECE284}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\fbl_uex_shellcoreproto\UEFCore\published\inc\ObjectWithSiteImpl.h = ..\..\..\fbl_uex_shellcoreproto\UEFCore\published\inc\ObjectWithSiteImpl.h
 		ObjectWithSiteImpl.h = ObjectWithSiteImpl.h
 		ProfferServiceImpl.h = ProfferServiceImpl.h
 	EndProjectSection
