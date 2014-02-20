@@ -2,9 +2,29 @@
 //    Copyright (C) Microsoft.  All rights reserved.
 //
 #pragma once
-#include <wrl\implements.h>
-#include <wrl\Wrappers\CoreWrappers.h>
-#include <objbase.h>
+#include <wrl.h>                             // ComPtr, Runtimeclass, etc.
+#include <wrl\Wrappers\CoreWrappers.h>       // For SRWLock
+#include <ObjIdlbase.h>                      // For IAgileReference
+#include <ShObjIdl.h>                        // For IObjectWithSite
+
+// Class usage:
+// Derive from this class when your object wants to be "sited" to another object.
+// Typically the "site" of an object is used to discover functonality that the site exposes.
+// Often the "site" exposes the IServiceProvider interface that can be used to discover functionality.
+//
+// The services this class provides is an abstraction between sites that may be agile (free threaded)
+// in the site "chain" versus those that are not.
+//
+// For example, imagine a chain of sited objects such as below: (Agile = Thread Safe, Non-Agile means non-thread safe)
+//  
+//  | Object 1  |    | Object 2  |     | Object 3 |
+//  | Non-Agile | -> | Non-Agile | ->  | Agile    |
+//
+// Since multiple threads can run inside the code of Object 3 (since it is agile) if the code attempts to acquire
+// functionality that exists in Object 2 by acquiring COM interfaces through it's site chain, it is important
+// that the call from the thread running in Object 3 through the site chain is marshaled to the proper thread to
+// run inside Object 2.
+//
 
 namespace Windows { namespace Internal { namespace WRL {
 class ObjectWithSite :
@@ -12,10 +32,6 @@ class ObjectWithSite :
                 IObjectWithSite>
 {
 public:
-    ObjectWithSite()
-    {
-    }
-
     IFACEMETHODIMP SetSite(_In_opt_ IUnknown *punkSite)
     {
         HRESULT hr;
