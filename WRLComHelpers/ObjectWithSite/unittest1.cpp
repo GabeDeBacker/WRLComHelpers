@@ -3,6 +3,8 @@
 #include "..\ObjectWithSiteImpl.h"
 #include "..\ProfferServiceImpl.h"
 
+// Comment this unit test
+
 using namespace Windows::Internal::WRL;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace Microsoft::WRL;
