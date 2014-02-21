@@ -9,7 +9,7 @@ using namespace Microsoft::WRL;
 using namespace std;
 
 namespace ObjectWithSite
-{		
+{
 	class CAgileProfferServiceWithSite : public RuntimeClass <
 		RuntimeClassFlags<RuntimeClassType::ClassicCom>,
 		Implements <RuntimeClassFlags<RuntimeClassType::ClassicCom>,
